@@ -1,0 +1,20 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft Yahei;}
+.container{max-width:900px;margin:20px auto;padding:0 16px;}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.btn{display:inline-block;padding:8px 16px;background:#348eda;color:#fff;text-decoration:none;border:none;border-radius:4px;cursor:pointer}
+.back-btn{background:#777}
+.submit-btn{width:100%;margin-top:10px}
+.search-box{display:flex;gap:8px;margin-bottom:24px}
+#searchInput{flex:1;padding:8px;border:1px solid #ccc;border-radius:4px}
+.list-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid #ddd;padding:16px;border-radius:8px}
+.card-lost{border-left:5px solid #f56c6c}
+.card-found{border-left:5px solid #67c23a}
+.form-item{margin:12px 0}
+.form-item label{display:block;margin-bottom:4px}
+.form-item input,.form-item textarea,.form-item select{width:100%;padding:8px;border:1px solid #ccc;border-radius:4px}
+#detailBox{border:1px solid #ddd;padding:20px;border-radius:8px}
+.status-pending{color:#e6a23c}
+.status-found{color:#67c23a}
+.status-returned{color:#409eff}
+.copy-btn{margin-top:10px;background:#909399}
