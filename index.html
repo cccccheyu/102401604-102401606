@@ -2,26 +2,47 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>校园失物招领</title>
+    <title>校园失物招领平台</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>校园失物招领平台（结对作业）</h1>
-            <a href="publish.html" class="btn">发布寻物/招领</a>
-        </header>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="输入物品名称搜索...">
-            <button onclick="searchList()">搜索</button>
+    <nav class="nav">
+        <div class="nav-inner">
+            <span class="logo">🎒 校园失物招领</span>
+            <div class="nav-links">
+                <a href="index.html" class="active">首页</a>
+                <a href="publish.html">发布信息</a>
+                <a href="myposts.html">我的发布</a>
+            </div>
         </div>
-        <div id="listWrap" class="list-wrap">
-            <!-- js渲染卡片 -->
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <h1>校园失物招领平台</h1>
+            <p class="subtitle">丢了东西？捡到东西？在这里发布，快速找到失主</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 输入物品名称搜索，如：校园卡、钥匙...">
+            <button class="btn btn-primary" onclick="searchList()">搜索</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('all',this)">全部</button>
+            <button class="tab" onclick="switchTab('lost',this)">寻物启事</button>
+            <button class="tab" onclick="switchTab('found',this)">招领启事</button>
+        </div>
+
+        <div id="listWrap" class="card-grid">
+            <p class="empty-tip">加载中...</p>
         </div>
     </div>
+
     <script src="js/main.js"></script>
     <script>
-        window.onload = renderList;
+        let currentTab = 'all';
+        window.onload = function(){ renderList(); };
     </script>
 </body>
 </html>

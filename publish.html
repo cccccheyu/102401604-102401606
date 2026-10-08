@@ -6,46 +6,62 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <span class="logo">🎒 校园失物招领</span>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="publish.html" class="active">发布信息</a>
+                <a href="myposts.html">我的发布</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h2>发布寻物/招领信息</h2>
-            <a href="index.html" class="btn back-btn">返回首页</a>
-        </header>
-        <form id="publishForm">
-            <div class="form-item">
-                <label>类型</label>
-                <select id="type">
-                    <option value="lost">寻物（我丢了东西）</option>
-                    <option value="found">招领（捡到东西）</option>
-                </select>
-            </div>
-            <div class="form-item">
-                <label>标题</label>
-                <input type="text" id="title" placeholder="例如：校园卡丢失">
-            </div>
-            <div class="form-item">
-                <label>物品名称</label>
-                <input type="text" id="itemName" placeholder="例如：校园卡">
-            </div>
-            <div class="form-item">
-                <label>描述信息</label>
-                <textarea id="desc" placeholder="丢失地点、时间等信息"></textarea>
-            </div>
-            <div class="form-item">
-                <label>联系方式</label>
-                <input type="text" id="contact" placeholder="手机号/QQ">
-            </div>
-            <button type="submit" class="btn submit-btn">提交发布</button>
-        </form>
+        <div class="form-card">
+            <h2>发布寻物 / 招领信息</h2>
+            <form id="publishForm">
+                <div class="form-item">
+                    <label>信息类型 <span class="req">*</span></label>
+                    <select id="type">
+                        <option value="lost">寻物启事（我丢了东西）</option>
+                        <option value="found">招领启事（我捡到东西）</option>
+                    </select>
+                </div>
+                <div class="form-item">
+                    <label>我的称呼 <span class="req">*</span></label>
+                    <input type="text" id="author" placeholder="例如：张三 / 102401604">
+                    <p class="hint">用于在"我的发布"里识别你发的信息，下次不用重填</p>
+                </div>
+                <div class="form-item">
+                    <label>标题 <span class="req">*</span></label>
+                    <input type="text" id="title" placeholder="例如：校园卡丢失 / 捡到一串钥匙">
+                </div>
+                <div class="form-item">
+                    <label>物品名称 <span class="req">*</span></label>
+                    <input type="text" id="itemName" placeholder="例如：校园卡、AirPods、雨伞">
+                </div>
+                <div class="form-item">
+                    <label>详细描述</label>
+                    <textarea id="desc" rows="4" placeholder="丢失/捡到的时间、地点、物品特征等"></textarea>
+                </div>
+                <div class="form-item">
+                    <label>联系方式 <span class="req">*</span></label>
+                    <input type="text" id="contact" placeholder="手机号 / QQ / 微信">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">立即发布</button>
+            </form>
+        </div>
     </div>
+
     <script src="js/main.js"></script>
     <script>
-        document.getElementById('publishForm').addEventListener('submit',function(e){
+        document.getElementById('author').value = localStorage.getItem("myName") || "";
+        document.getElementById('publishForm').addEventListener('submit', function(e){
             e.preventDefault();
             addItem();
-            alert("发布成功！");
-            window.location.href="index.html";
-        })
+        });
     </script>
 </body>
 </html>
+

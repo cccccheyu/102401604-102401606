@@ -2,20 +2,31 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>详情页面</title>
+    <title>物品详情</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <span class="logo">🎒 校园失物招领</span>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="publish.html">发布信息</a>
+                <a href="myposts.html">我的发布</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h2>物品详情</h2>
-            <a href="index.html" class="btn back-btn">返回首页</a>
-        </header>
-        <div id="detailBox"></div>
+        <div id="detailBox" class="detail-card">
+            <p class="empty-tip">加载中...</p>
+        </div>
     </div>
+
     <script src="js/main.js"></script>
     <script>
         window.onload = loadDetail;
     </script>
 </body>
 </html>
+

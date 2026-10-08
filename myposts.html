@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的发布</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <span class="logo">🎒 校园失物招领</span>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="publish.html">发布信息</a>
+                <a href="myposts.html" class="active">我的发布</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>我的发布</h2>
+        <div class="my-name-box">
+            <label>我的称呼：</label>
+            <input type="text" id="myNameInput" placeholder="输入你发布时填的称呼">
+            <button class="btn btn-primary" onclick="loadMyPosts()">查看</button>
+        </div>
+        <div id="myList" class="card-grid"></div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        window.onload = function(){
+            document.getElementById('myNameInput').value = localStorage.getItem("myName") || "";
+            loadMyPosts();
+        };
+    </script>
+</body>
+</html>
