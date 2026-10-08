@@ -48,7 +48,6 @@ lost-found/
 
 **打开Chrome，F12调出开发者控制台，输入 `runAllTest()` 回车，自动运行全部7个测试用例。**
 
-**单元测试文件不需要上传GitHub。**
 
 
 
