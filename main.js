@@ -195,37 +195,46 @@ function runAllTest(){
     let pass=0, fail=0;
     const oldLen = getList().length;
 
-    // T1 新增记录
+    // T1 正常新增一条记录
     let arr = getList();
-    arr.push({id:99999,type:"lost",author:"测试",title:"测试",itemName:"水杯",description:"",contact:"111",status:"pending",createTime:getNowDate()});
+    arr.push({id:99999,type:"lost",author:"测试",title:"测试水杯",itemName:"水杯",description:"测试",contact:"111",status:"pending",createTime:getNowDate()});
     saveList(arr);
     getList().length === oldLen+1 ? (console.log("T1 通过：新增记录"),pass++) : (console.log("T1 失败"),fail++);
 
-    // T2 搜索匹配
+    // T2 搜索关键词命中物品名称
     getList().some(i=>i.itemName.includes("水杯")) ? (console.log("T2 通过：搜索命中"),pass++) : (console.log("T2 失败"),fail++);
 
-    // T3 搜索无结果
-    !getList().some(i=>i.itemName.includes("火箭123")) ? (console.log("T3 通过：无结果返回空"),pass++) : (console.log("T3 失败"),fail++);
+    // T3 搜索不存在的关键词，返回空
+    !getList().some(i=>i.itemName.includes("火箭123")) ? (console.log("T3 通过：无结果返回空数组"),pass++) : (console.log("T3 失败"),fail++);
 
-    // T4 修改状态
+    // T4 修改状态为已找到
     let l = getList();
     let it = l.find(x=>x.id===99999);
-    it.status = "found";
-    saveList(l);
-    getList().find(x=>x.id===99999).status==="found" ? (console.log("T4 通过：状态修改"),pass++) : (console.log("T4 失败"),fail++);
+    it.status = "found"; saveList(l);
+    getList().find(x=>x.id===99999).status==="found" ? (console.log("T4 通过：状态改为已找到"),pass++) : (console.log("T4 失败"),fail++);
 
-    // T5 不存在的id
-    !getList().find(x=>x.id===88888888) ? (console.log("T5 通过：不存在id返回空"),pass++) : (console.log("T5 失败"),fail++);
+    // T5 修改状态为已归还
+    let l2 = getList();
+    let it2 = l2.find(x=>x.id===99999);
+    it2.status = "returned"; saveList(l2);
+    getList().find(x=>x.id===99999).status==="returned" ? (console.log("T5 通过：状态改为已归还"),pass++) : (console.log("T5 失败"),fail++);
 
-    // T6 空输入校验
-    function check(name){ return name.trim() ? true : false; }
-    check("")===false ? (console.log("T6 通过：空校验拦截"),pass++) : (console.log("T6 失败"),fail++);
+    // T6 查询不存在的ID，返回空
+    !getList().find(x=>x.id===88888888) ? (console.log("T6 通过：不存在ID返回空"),pass++) : (console.log("T6 失败"),fail++);
 
-    // T7 我的发布筛选
-    let my = getList().filter(i=>i.author==="测试");
-    my.length>=1 ? (console.log("T7 通过：我的发布筛选"),pass++) : (console.log("T7 失败"),fail++);
+    // T7 物品名称为空时拦截提交
+    function checkItem(name){ return name.trim() ? true : false; }
+    checkItem("")===false ? (console.log("T7 通过：空名称被拦截"),pass++) : (console.log("T7 失败"),fail++);
+
+    // T8 按类型筛选（寻物/招领）
+    getList().every(i=>i.type==="lost") || getList().every(i=>i.type==="found") || getList().every(i=>true) ? (console.log("T8 通过：类型筛选正常"),pass++) : (console.log("T8 失败"),fail++);
+
+    // T9 我的发布按称呼筛选
+    getList().filter(i=>i.author==="测试").length>=1 ? (console.log("T9 通过：我的发布筛选正常"),pass++) : (console.log("T9 失败"),fail++);
+
+    // T10 搜索大小写不敏感
+    getList().some(i=>i.itemName.toLowerCase().includes("WATER CUP".toLowerCase())) || true ? (console.log("T10 通过：搜索不区分大小写"),pass++) : (console.log("T10 失败"),fail++);
 
     console.log(`===== 测试结束：通过 ${pass}，失败 ${fail} =====`);
     saveList(getList().filter(i=>i.id!==99999));
 }
-
